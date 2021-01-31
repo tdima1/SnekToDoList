@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ToDoList.Data;
 using ToDoList.Data.Context;
 
 namespace ToDoList
@@ -29,6 +30,8 @@ namespace ToDoList
       {
          services.AddControllers();
          services.AddDbContext<TaskItemContext>(ctx => ctx.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+         services.AddTransient<ITaskItemRepository, TaskItemRepository>();
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

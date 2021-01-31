@@ -27,13 +27,19 @@ namespace ToDoList.Data.Context
       {
          base.OnModelCreating(modelBuilder);
          //Use this code to initializa and populate DB with objects. Copy paste a couple times then change shit.
-         //modelBuilder.Entity<TaskItem>()
-         //   .HasData(new TaskItem {
-         //      Id = 1,
-         //      Name = "Default Entity",
-         //      Description = "Default Description"
-               
-         //   });
+         modelBuilder.Entity<TaskItem>()
+            .HasData(new TaskItem {
+               Id = 1,
+               Name = "Default Entity",
+               Description = "Default Description",
+               ColumnName = EnumTaskColumns.Backlog
+            }, 
+            new TaskItem {
+               Id = 2,
+               Name = "Default Entity",
+               Description = "Default Description",
+               ColumnName = EnumTaskColumns.InProgress
+            });
       }
    }
 }

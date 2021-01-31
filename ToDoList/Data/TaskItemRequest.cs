@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Data
 {
-   public class TaskItem
+   public class TaskItemRequest
    {
       public int Id { get; set; }
-      public string Name { get; set; }
-      public string Description { get; set; }
-      public EnumTaskColumns ColumnName { get; set; }
+      public EnumTaskColumns NewColumn { get; set; }
    }
 }
