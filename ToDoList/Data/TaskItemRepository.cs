@@ -34,7 +34,7 @@ namespace ToDoList.Data
          _context.SaveChanges();
       }
 
-      public async Task Edit(TaskItem taskItem)
+      public void Edit(TaskItem taskItem)
       {
          _context.Entry(taskItem).State = EntityState.Modified;
          _context.SaveChanges();
@@ -45,10 +45,16 @@ namespace ToDoList.Data
          return _context.TaskItems.Find(Id);
       }
 
-      public IEnumerable<TaskItem> GetAll()
+      public IEnumerable<IEnumerable<TaskItem>> GetAll()
       {
-         return from item in _context.TaskItems
-                select item;
+         List<List<TaskItem>> result = new List<List<TaskItem>>();
+
+         var groups =  _context.TaskItems.AsEnumerable().GroupBy(item => item.ColumnName).ToList();
+         foreach (var group in groups) {
+            result.Add(group.ToList());
+         }
+
+         return result;
       }
    }
 }

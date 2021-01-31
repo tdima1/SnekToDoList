@@ -11,7 +11,7 @@ namespace ToDoList.Data
       void Add(IEnumerable<TaskItem> taskItems);
 
       TaskItem Get(int Id);
-      IEnumerable<TaskItem> GetAll();
+      IEnumerable<IEnumerable<TaskItem>> GetAll();
 
       void Delete(int Id);
       void Edit(TaskItem taskItem);

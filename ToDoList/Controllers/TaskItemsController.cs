@@ -21,7 +21,7 @@ namespace ToDoList.Controllers
 
       // GET: api/TaskItems
       [HttpGet]
-      public async Task<IEnumerable<TaskItem>> GetAll()
+      public async Task<IEnumerable<IEnumerable<TaskItem>>> GetAll()
       {
          return _repository.GetAll();
       }
@@ -33,11 +33,20 @@ namespace ToDoList.Controllers
          return _repository.Get(id);
       }
 
+      [HttpPost]
+      public async Task<IActionResult> CreateTask([FromBody] TaskItem payload)
+      {
+         payload.ColumnName = EnumTaskColumns.Backlog;
+         _repository.Add(payload);
+
+         return Ok(_repository.GetAll());
+      }
+
       // PUT: api/TaskItems
       [HttpPut]
       public async void MoveTaskItem([FromBody] TaskItem payload)
       {
-         await _repository.Edit(payload);
+         _repository.Edit(payload);
       }
 
       // DELETE: api/ApiWithActions/5

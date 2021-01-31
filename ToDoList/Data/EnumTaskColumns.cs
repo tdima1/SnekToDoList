@@ -8,7 +8,8 @@ namespace ToDoList.Data
    public enum EnumTaskColumns
    {
       Backlog = 1,
-      InProgress = 2,
-      Done = 3
+      SelectedForDev = 2,
+      InProgress = 3,
+      Done = 4
    }
 }
