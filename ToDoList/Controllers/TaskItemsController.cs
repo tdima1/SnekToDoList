@@ -43,7 +43,7 @@ namespace ToDoList.Controllers
       }
 
       // PUT: api/TaskItems
-      [HttpPut]
+      [HttpPut("{id}")]
       public async Task<IActionResult> MoveTaskItem([FromBody] TaskItem payload)
       {
          await _repository.Edit(payload);
