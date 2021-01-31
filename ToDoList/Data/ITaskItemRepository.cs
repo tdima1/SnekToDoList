@@ -7,13 +7,13 @@ namespace ToDoList.Data
 {
    public interface ITaskItemRepository
    {
-      void Add(TaskItem taskItem);
-      void Add(IEnumerable<TaskItem> taskItems);
+      Task Add(TaskItem taskItem);
+      Task Add(IEnumerable<TaskItem> taskItems);
 
-      TaskItem Get(int Id);
-      IEnumerable<IEnumerable<TaskItem>> GetAll();
+      Task<TaskItem> Get(int Id);
+      Task<IEnumerable<IEnumerable<TaskItem>>> GetAll();
 
-      void Delete(int Id);
-      void Edit(TaskItem taskItem);
+      Task Delete(int Id);
+      Task Edit(TaskItem taskItem);
    }
 }

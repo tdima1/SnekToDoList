@@ -16,36 +16,36 @@ namespace ToDoList.Data
          _context = context;
       }
 
-      public void Add(TaskItem taskItem)
+      public async Task Add(TaskItem taskItem)
       {
          _context.Add(taskItem);
          _context.SaveChanges();
       }
 
-      public void Add(IEnumerable<TaskItem> taskItems)
+      public async Task Add(IEnumerable<TaskItem> taskItems)
       {
          throw new NotImplementedException();
       }
 
-      public void Delete(int Id)
+      public async Task Delete(int Id)
       {
          var taskItem = _context.TaskItems.Find(Id);
          _context.Remove(taskItem);
          _context.SaveChanges();
       }
 
-      public void Edit(TaskItem taskItem)
+      public async Task Edit(TaskItem taskItem)
       {
          _context.Entry(taskItem).State = EntityState.Modified;
          _context.SaveChanges();
       }
 
-      public TaskItem Get(int Id)
+      public async Task<TaskItem> Get(int Id)
       {
          return _context.TaskItems.Find(Id);
       }
 
-      public IEnumerable<IEnumerable<TaskItem>> GetAll()
+      public async Task<IEnumerable<IEnumerable<TaskItem>>> GetAll()
       {
          List<List<TaskItem>> result = new List<List<TaskItem>>();
 
