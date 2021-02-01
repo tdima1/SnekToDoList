@@ -49,9 +49,11 @@ namespace ToDoList.Data
       {
          List<List<TaskItem>> result = new List<List<TaskItem>>();
 
-         var groups =  _context.TaskItems.AsEnumerable().GroupBy(item => item.ColumnName).ToList();
-         foreach (var group in groups) {
-            result.Add(group.ToList());
+         List<TaskItem> one = new List<TaskItem>();
+
+         for (int i = 0; i < 4; i++) {
+            one = _context.TaskItems.Where(item => (int)item.Column == i+1).ToList();
+            result.Add(one);
          }
 
          return result;

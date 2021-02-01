@@ -30,15 +30,15 @@ namespace ToDoList.Data.Context
          modelBuilder.Entity<TaskItem>()
             .HasData(new TaskItem {
                Id = 1,
-               Name = "Default Entity",
+               Title = "Default Entity",
                Description = "Default Description",
-               ColumnName = EnumTaskColumns.Backlog
+               Column = EnumTaskColumns.Backlog
             }, 
             new TaskItem {
                Id = 2,
-               Name = "Default Entity",
+               Title = "Default Entity",
                Description = "Default Description",
-               ColumnName = EnumTaskColumns.InProgress
+               Column = EnumTaskColumns.InProgress
             });
       }
    }

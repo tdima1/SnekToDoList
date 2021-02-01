@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Data;
@@ -10,6 +12,7 @@ namespace ToDoList.Controllers
 {
    [Route("taskItems")]
    [ApiController]
+   [AllowAnonymous]
    public class TaskItemsController : ControllerBase
    {
       private readonly ITaskItemRepository _repository;
@@ -36,7 +39,7 @@ namespace ToDoList.Controllers
       [HttpPost]
       public async Task<IActionResult> CreateTask([FromBody] TaskItem payload)
       {
-         payload.ColumnName = EnumTaskColumns.Backlog;
+         payload.Column = EnumTaskColumns.Backlog;
          await _repository.Add(payload);
 
          return Ok(await _repository.GetAll());

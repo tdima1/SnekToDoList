@@ -32,6 +32,9 @@ namespace ToDoList
          services.AddDbContext<TaskItemContext>(ctx => ctx.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
          services.AddTransient<ITaskItemRepository, TaskItemRepository>();
+
+         services.AddCors();
+
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,15 +44,23 @@ namespace ToDoList
             app.UseDeveloperExceptionPage();
          }
 
+
+         app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials());
+
          app.UseHttpsRedirection();
 
-         app.UseRouting();
-
          app.UseAuthorization();
+
+         app.UseRouting();
 
          app.UseEndpoints(endpoints => {
             endpoints.MapControllers();
          });
+
       }
    }
 }
